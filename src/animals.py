@@ -2,6 +2,7 @@ from src.genes import GenePair
 from src.enums import GeneType
 import random
 
+
 class Rabbit:
     def __init__(self, genes: dict[GeneType, GenePair]):
         self.genes = genes
@@ -23,14 +24,25 @@ class Rabbit:
                 new_rabbit = Rabbit(new_genes)
                 children.append(new_rabbit)
         return children
-    
+
     def speed(self):
-        return self.genes[GeneType.SPEED].expressed_gene.speed
+        return self.genes[GeneType.SPEED].expressed_gene.stat / self.size()
+
+    def size(self):
+        return self.genes[GeneType.SIZE].expressed_gene.stat
 
     def survives(self):
-        if self.speed() >= random.randrange(1,400)/100:
+        if self.speed() >= random.randrange(0, 400) / 100:
             return True
         return False
 
     def determine_offspring_number(self):
-        self.offspring_number = 5 - self.speed()
+        self.offspring_number = convert_decimal_to_probabilitic_integer(5 - self.size())
+
+
+def convert_decimal_to_probabilitic_integer(decimal: float) -> int:
+    expected = decimal
+    base = expected // 1
+    remainder = (expected) % 1
+    extra_child = random.choices([1, 0], [remainder, 1 - remainder], k=1)[0]
+    return int(base + extra_child)

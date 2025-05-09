@@ -1,11 +1,10 @@
 from dataclasses import dataclass
-from src.enums import Dominancy
+from src.enums import Dominancy, GeneType
 import random
 
 
 @dataclass(frozen=True)
 class Gene:
-    name: str
     dominancy: Dominancy
     initial_weighting: float
 
@@ -18,6 +17,22 @@ class SpeedGene(Gene):
     name: str
     dominancy: Dominancy
     speed: float
+
+
+@dataclass(frozen=True)
+class SizeGene(Gene):
+    name: str
+    dominancy: Dominancy
+    size: float
+
+@dataclass(frozen=True)
+class ScalingGene(Gene):
+    gene_type: GeneType
+    dominancy: Dominancy
+    stat: float
+
+    def name(self) -> str:
+        return self.gene_type + self.dominancy + str(self.stat)
 
 
 class GenePair:
