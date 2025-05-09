@@ -17,13 +17,14 @@ def create_speed_genes() -> list[ScalingGene]:
     speed_genes = []
     data = np.array(
         [
-            ["speed3d", Dominancy.DOMINANT, 1, 3],
-            ["speed2", Dominancy.DOMINANT, 1, 2],
-            ["speed3", Dominancy.RECESSIVE, 1, 3],
-            ["speed4", Dominancy.DOMINANT, 1, 4],
+            [Dominancy.DOMINANT, 1, 1],
+            [Dominancy.DOMINANT, 1, 2],
+            [Dominancy.DOMINANT, 1, 3],
+            [Dominancy.DOMINANT, 1, 4],
+            [Dominancy.DOMINANT, 1, 5],
         ]
     )
-    df = pd.DataFrame(data, columns=["Name", "Dominancy", "Initial Weighting", "Stat"])
+    df = pd.DataFrame(data, columns=["Dominancy", "Initial Weighting", "Stat"])
     for index, row in df.iterrows():
         speed_genes.append(
             ScalingGene(row["Dominancy"], float(row["Initial Weighting"]), GeneType.SPEED, float(row["Stat"]))
@@ -35,13 +36,14 @@ def create_size_genes() -> list[ScalingGene]:
     size_genes = []
     data = np.array(
         [
-            ["size3d", Dominancy.DOMINANT, 1, 3],
-            ["size2", Dominancy.DOMINANT, 1, 2],
-            ["size3", Dominancy.RECESSIVE, 1, 3],
-            ["size4", Dominancy.DOMINANT, 1, 4],
+            [Dominancy.DOMINANT, 1, 1],
+            [Dominancy.DOMINANT, 1, 2],
+            [Dominancy.DOMINANT, 1, 3],
+            [Dominancy.DOMINANT, 1, 4],
+            [Dominancy.DOMINANT, 1, 5],
         ]
     )
-    df = pd.DataFrame(data, columns=["Name", "Dominancy", "Initial Weighting", "Stat"])
+    df = pd.DataFrame(data, columns=["Dominancy", "Initial Weighting", "Stat"])
     for index, row in df.iterrows():
         size_genes.append(
             ScalingGene(row["Dominancy"], float(row["Initial Weighting"]), GeneType.SIZE, float(row["Stat"]))

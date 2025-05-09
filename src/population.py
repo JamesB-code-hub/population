@@ -37,7 +37,7 @@ def breed_survivors(rabbits: list[Rabbit]) -> list[Rabbit]:
 
 
 def cap_population(rabbits: list[Rabbit]) -> list[Rabbit]:
-    population_cap = 60
+    population_cap = 300
     random.shuffle(rabbits)
     if len(rabbits) > population_cap:
         rabbits = rabbits[slice(population_cap)]
@@ -47,15 +47,12 @@ def cap_population(rabbits: list[Rabbit]) -> list[Rabbit]:
 def simulate_generations(generations: int):
     gene_pool = setup.create_gene_pool()
     rabbits = setup.create_rabbits(gene_pool, 30)
-    gene_data = {}
-    gene_data = data_plots.collect_data(rabbits, gene_data, 0, GeneType.SPEED)
+    gene_data_manager = data_plots.create_gene_data_manager()
     for generation in range(generations):
+        gene_data_manager.collect_all_data(rabbits, generation)
         rabbits = run_lifecycle(rabbits)
-        gene_data = data_plots.collect_data(
-            rabbits, gene_data, generation, GeneType.SPEED
-        )
-
-    data_plots.plot_genes(gene_data)
+    gene_data_manager.plot_all_data()
+    gene_data_manager.plot_cross_plot(rabbits, GeneType.SPEED, GeneType.SIZE)
 
 
 simulate_generations(40)

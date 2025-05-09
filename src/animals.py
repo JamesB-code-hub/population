@@ -26,18 +26,28 @@ class Rabbit:
         return children
 
     def speed(self):
-        return self.genes[GeneType.SPEED].expressed_gene.stat / self.size()
+        return self.genes[GeneType.SPEED].expressed_gene.stat 
 
     def size(self):
         return self.genes[GeneType.SIZE].expressed_gene.stat
 
     def survives(self):
-        if self.speed() >= random.randrange(0, 400) / 100:
+        if self.survives_chase() and self.survives_fight():
+            return True
+        return False
+    
+    def survives_fight(self):
+        if self.size() >= random.randrange(0, 250) / 100:
+            return True
+        return False
+    
+    def survives_chase(self):
+        if self.speed() >= random.randrange(0, 250) / 100:
             return True
         return False
 
     def determine_offspring_number(self):
-        self.offspring_number = convert_decimal_to_probabilitic_integer(5 - self.size())
+        self.offspring_number = convert_decimal_to_probabilitic_integer(5 - (0.5*self.size()* self.speed()))
 
 
 def convert_decimal_to_probabilitic_integer(decimal: float) -> int:
