@@ -25,6 +25,7 @@ class SizeGene(Gene):
     dominancy: Dominancy
     size: float
 
+
 @dataclass(frozen=True)
 class ScalingGene(Gene):
     gene_type: GeneType

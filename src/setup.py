@@ -27,7 +27,12 @@ def create_speed_genes() -> list[ScalingGene]:
     df = pd.DataFrame(data, columns=["Dominancy", "Initial Weighting", "Stat"])
     for index, row in df.iterrows():
         speed_genes.append(
-            ScalingGene(row["Dominancy"], float(row["Initial Weighting"]), GeneType.SPEED, float(row["Stat"]))
+            ScalingGene(
+                row["Dominancy"],
+                float(row["Initial Weighting"]),
+                GeneType.SPEED,
+                float(row["Stat"]),
+            )
         )
     return speed_genes
 
@@ -46,7 +51,12 @@ def create_size_genes() -> list[ScalingGene]:
     df = pd.DataFrame(data, columns=["Dominancy", "Initial Weighting", "Stat"])
     for index, row in df.iterrows():
         size_genes.append(
-            ScalingGene(row["Dominancy"], float(row["Initial Weighting"]), GeneType.SIZE, float(row["Stat"]))
+            ScalingGene(
+                row["Dominancy"],
+                float(row["Initial Weighting"]),
+                GeneType.SIZE,
+                float(row["Stat"]),
+            )
         )
     return size_genes
 

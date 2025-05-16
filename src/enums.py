@@ -1,7 +1,4 @@
-
-
-
-class Dominancy():
+class Dominancy:
     DOMINANT = "D"
     RECESSIVE = "R"
 

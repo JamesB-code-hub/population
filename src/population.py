@@ -53,10 +53,10 @@ def simulate_generations(generations: int):
         rabbits = run_lifecycle(rabbits)
         if len(rabbits) == 0:
             break
-        
+
     gene_data_manager.plot_all_data()
     gene_data_manager.plot_cross_plot(GeneType.SPEED, GeneType.SIZE)
-    
+
 
 def boo() -> int:
     return "hellooo"
