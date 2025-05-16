@@ -73,7 +73,7 @@ class GeneDataManager:
             plt.ylabel(gene_type_two)
             # plt.title(f"Generation {generation}", loc = 'left')
             camera.snap()
-        anim = camera.animate(interval=200, blit=True)
+        camera.animate(interval=200, blit=True)
         # need to save this
         plt.show()
 
