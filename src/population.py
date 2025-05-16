@@ -46,13 +46,20 @@ def cap_population(rabbits: list[Rabbit]) -> list[Rabbit]:
 
 def simulate_generations(generations: int):
     gene_pool = setup.create_gene_pool()
-    rabbits = setup.create_rabbits(gene_pool, 30)
+    rabbits = setup.create_rabbits(gene_pool, 300)
     gene_data_manager = data_plots.create_gene_data_manager()
     for generation in range(generations):
         gene_data_manager.collect_all_data(rabbits, generation)
         rabbits = run_lifecycle(rabbits)
+        if len(rabbits) == 0:
+            break
+        
     gene_data_manager.plot_all_data()
-    gene_data_manager.plot_cross_plot(rabbits, GeneType.SPEED, GeneType.SIZE)
+    gene_data_manager.plot_cross_plot(GeneType.SPEED, GeneType.SIZE)
+    
+
+def boo() -> int:
+    return "hellooo"
 
 
 simulate_generations(40)

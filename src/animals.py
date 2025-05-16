@@ -37,12 +37,12 @@ class Rabbit:
         return False
     
     def survives_fight(self):
-        if self.size() >= random.randrange(0, 250) / 100:
+        if self.size() >= random.randrange(0, 300) / 100:
             return True
         return False
     
     def survives_chase(self):
-        if self.speed() >= random.randrange(0, 250) / 100:
+        if self.speed() >= random.randrange(0, 300) / 100:
             return True
         return False
 
